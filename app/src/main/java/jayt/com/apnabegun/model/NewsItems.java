@@ -10,6 +10,9 @@ public class NewsItems {
     String is_breaking;
     String published_at;
 
+    public NewsItems() {
+    }
+
     public NewsItems(String id, String writer, String title, String content, String image, String is_breaking, String published_at) {
         this.id = id;
         this.writer = writer;
@@ -46,5 +49,33 @@ public class NewsItems {
 
     public String getPublished_at() {
         return published_at;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setIs_breaking(String is_breaking) {
+        this.is_breaking = is_breaking;
+    }
+
+    public void setPublished_at(String published_at) {
+        this.published_at = published_at;
     }
 }
