@@ -1,7 +1,10 @@
 package jayt.com.apnabegun.mFragments;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -30,28 +35,11 @@ public class News extends Fragment {
     ArrayList<NewsItems> dataList = new ArrayList<NewsItems>();;
     ListView listNews;
 
-    public static final String KEY_ID = "id";
-    public static final String KEY_WRITER = "writer";
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_CONTENT = "content";
-    public static final String KEY_IMAGE = "image";
-    public static final String KEY_ISBREAKING= "is_breaking";
-    public static final String KEY_PUBLISHEDAT = "publishedAt";
+    // Progress Dialog
+    private ProgressDialog pDialog;
 
     public News() {
     }
-
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        dataList = new ArrayList<HashMap<String, String>>();
-//
-//        // Loading INBOX in Background Thread
-//        new DownloadNews().execute();
-//
-//
-//    }
 
     @Nullable
     @Override
@@ -68,6 +56,11 @@ public class News extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Loading News ...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
 
         }
         protected String doInBackground(String... args) {
@@ -75,11 +68,6 @@ public class News extends Fragment {
 
             String urlParameters = "";
             xml = Function.excuteGet("http://34.233.126.33:5000/getresponse/appnexus", urlParameters);
-            return  xml;
-        }
-
-        @Override
-        protected void onPostExecute(String xml) {
 
             if(xml.length()>10){ // Just checking if not empty
 
@@ -100,25 +88,28 @@ public class News extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                CustomAdapter adapter = new CustomAdapter(getActivity(), dataList);
-                listNews.setAdapter(adapter);
-
-                listNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-                        Intent i = new Intent(getActivity(), DetailsActivity.class);
-                        i.putExtra("image", dataList.get(+position).getImage());
-                        i.putExtra("writer", dataList.get(+position).getWriter());
-                        i.putExtra("title", dataList.get(+position).getTitle());
-                        i.putExtra("content", dataList.get(+position).getContent());
-                        startActivity(i);
-                    }
-                });
-
             }else{
-                System.out.println("aise hi....");
+                System.out.println("loading....");
             }
+
+            return  xml;
+        }
+
+        @Override
+        protected void onPostExecute(String xml) {
+            // dismiss the dialog after getting all products
+            pDialog.dismiss();
+
+            // updating UI from Background Thread
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    CustomAdapter adapter = new CustomAdapter(getActivity(), dataList);
+                    listNews.setAdapter(adapter);
+
+                    ImageView image = (ImageView) getActivity().findViewById(R.id.ad_container);
+                    image.setImageResource(R.drawable.lotushands);
+                }
+            });
         }
     }
 

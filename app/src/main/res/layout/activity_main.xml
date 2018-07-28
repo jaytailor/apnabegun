@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbarid"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center"
         app:elevation="0dp">
 
@@ -32,7 +32,6 @@
                 android:src="@drawable/begunlogotext"/>
 
         </LinearLayout>
-
     </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayoutid"
@@ -40,15 +39,27 @@
         android:layout_height="wrap_content"
         app:tabGravity="fill"
         android:layout_gravity="center"
+        android:scrollbars="horizontal"
+        app:tabMode="scrollable"
         app:tabTextAppearance="@style/MineCustomTabText"
         app:tabTextColor="@color/tabTextColor"
         app:tabIndicatorColor="@color/tabIndicatorColor"
         android:background="@color/colorPrimary"/>
 
+
+    <ImageView
+        android:id="@+id/ad_container"
+        android:src="@drawable/begunlogotext"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_id"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="350dp">
+
         <ListView
             android:id="@+id/listNews"
             android:layout_width="match_parent"
@@ -56,19 +67,9 @@
             android:background="#FFFFFF"
             android:divider="#F5F5F5"
             android:dividerHeight="1dp"
-            android:visibility="visible"
-            android:layout_below="@id/tablayoutid"/>
+            android:visibility="visible"/>
     </android.support.v4.view.ViewPager>
-    
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:src="@drawable/begunlogotext"/>
 
-    <!--<ProgressBar-->
-        <!--android:id="@+id/loader"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"/>-->
 
 
 </LinearLayout>

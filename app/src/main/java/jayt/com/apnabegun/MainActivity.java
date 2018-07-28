@@ -4,6 +4,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 import jayt.com.apnabegun.adapter.ViewPagerAdapter;
@@ -39,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
     {
         ViewPagerAdapter pagerAdapter=new ViewPagerAdapter(this.getSupportFragmentManager());
         pagerAdapter.addFragment(new News(), "समाचार");
-        //pagerAdapter.addFragment(new BuySell(), "ख़रीदे बेचे");
-        pagerAdapter.addFragment(new AdsScreen(), "विज्ञापन");
-        //pagerAdapter.addFragment(new Videos(), "वीडियो");
         pagerAdapter.addFragment(new Editorial(), "संपादकीय");
+        pagerAdapter.addFragment(new BuySell(), "ख़रीदे बेचे");
+        pagerAdapter.addFragment(new AdsScreen(), "विज्ञापन");
+        pagerAdapter.addFragment(new AdsScreen(), "राशिफ़ल");
+        pagerAdapter.addFragment(new Videos(), "वीडियो");
 
         //SET ADAPTER TO VP
         vp.setAdapter(pagerAdapter);
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         vp.setCurrentItem(tab.getPosition());
     }
 
+    public void initAdView() {
+        ImageView adViewContainer = (ImageView) findViewById(R.id.ad_container);
+        adViewContainer.setImageResource(R.drawable.lotushands);
+    }
 //    private TabLayout tabLayout;
 //    private AppBarLayout appBarLayout;
 //    private ViewPager viewPager;

@@ -17,14 +17,14 @@
         android:padding="4dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:orientation="vertical"
             android:gravity="center">
 
             <ImageView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/newsImage"
                 android:src="@drawable/lotushands" />
 
@@ -44,7 +44,7 @@
                 android:id="@+id/newsTitle"
                 android:autoSizeTextType="uniform"
                 android:textSize="18sp"
-                android:padding="2dp"
+                android:padding="5dp"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:textColor="@color/colorAccent"
@@ -57,7 +57,7 @@
                 android:text=" John Doe a former FBI Agent and now Physics teacher"
                 android:id="@+id/newsContent"
                 android:autoSizeTextType="uniform"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:textSize="16sp"
                 android:maxLines="2"
                 android:minLines="2"
@@ -83,7 +83,7 @@
                 android:id="@+id/newsPublishedAt"
                 android:textColor="#42A5F5"
                 android:textSize="14sp"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:autoSizeTextType="uniform"
                 android:layout_below="@+id/newsContent"
                 />
