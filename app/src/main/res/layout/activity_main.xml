@@ -19,17 +19,41 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/lotushands"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/lotushands"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:src="@drawable/begunlogotext"/>
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:src="@drawable/begunlogotext"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/shareImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/whatsapp_32" />
+            </LinearLayout>
 
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
@@ -46,19 +70,10 @@
         app:tabIndicatorColor="@color/tabIndicatorColor"
         android:background="@color/colorPrimary"/>
 
-
-    <ImageView
-        android:id="@+id/ad_container"
-        android:src="@drawable/begunlogotext"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_id"
         android:layout_width="wrap_content"
-        android:layout_height="350dp">
+        android:layout_height="wrap_content">
 
         <ListView
             android:id="@+id/listNews"
@@ -67,9 +82,8 @@
             android:background="#FFFFFF"
             android:divider="#F5F5F5"
             android:dividerHeight="1dp"
-            android:visibility="visible"/>
+            android:visibility="visible">
+        </ListView>
     </android.support.v4.view.ViewPager>
-
-
 
 </LinearLayout>

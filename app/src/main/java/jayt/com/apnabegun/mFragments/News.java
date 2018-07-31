@@ -44,9 +44,14 @@ public class News extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        LayoutInflater myinflater = getLayoutInflater();
         View rootView = inflater.inflate(R.layout.news, container, false);
 
+
+
         listNews = (ListView) rootView.findViewById(R.id.newsListView);
+//        ViewGroup myHeader = (ViewGroup)myinflater.inflate(R.layout.news, listNews, false);
+//        listNews.addHeaderView(myHeader, null, false);
         new DownloadNews().execute();
 
         return rootView;
@@ -67,7 +72,7 @@ public class News extends Fragment {
             String xml = "";
 
             String urlParameters = "";
-            xml = Function.excuteGet("http://34.233.126.33:5000/getresponse/appnexus", urlParameters);
+            xml = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehi", urlParameters);
 
             if(xml.length()>10){ // Just checking if not empty
 
@@ -103,11 +108,12 @@ public class News extends Fragment {
             // updating UI from Background Thread
             getActivity().runOnUiThread(new Runnable() {
                 public void run() {
+                    ImageView image = (ImageView) getActivity().findViewById(R.id.ad_container);
+                    image.setImageResource(R.drawable.lotushands);
+
                     CustomAdapter adapter = new CustomAdapter(getActivity(), dataList);
                     listNews.setAdapter(adapter);
 
-                    ImageView image = (ImageView) getActivity().findViewById(R.id.ad_container);
-                    image.setImageResource(R.drawable.lotushands);
                 }
             });
         }
