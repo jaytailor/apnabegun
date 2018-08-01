@@ -97,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
         vp.setCurrentItem(tab.getPosition());
     }
 
-    public void initAdView() {
-        ImageView adViewContainer = (ImageView) findViewById(R.id.ad_container);
-        adViewContainer.setImageResource(R.drawable.lotushands);
-    }
 //    private TabLayout tabLayout;
 //    private AppBarLayout appBarLayout;
 //    private ViewPager viewPager;

@@ -63,7 +63,7 @@ public class AdsAdapter extends BaseAdapter {
 
         ImageView adsImg = (ImageView) convertView.findViewById(R.id.adsImage);
 
-        // Get the values from the newitems model
+        // Get the values from the adslist model
         final String image = adslist.get(position).getImageurl();
 
         if(image.length() < 5)
@@ -72,7 +72,7 @@ public class AdsAdapter extends BaseAdapter {
         }else{
             Picasso.with(c)
                     .load(image)
-                    .resize(300, 200)
+                    .resize(300, 250)
                     .into(adsImg);
         }
 

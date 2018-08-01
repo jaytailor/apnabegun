@@ -1,22 +1,18 @@
 package jayt.com.apnabegun.mFragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,16 +20,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import jayt.com.apnabegun.DetailsActivity;
 import jayt.com.apnabegun.R;
 import jayt.com.apnabegun.adapter.CustomAdapter;
 import jayt.com.apnabegun.common.Function;
+import jayt.com.apnabegun.model.AdsList;
 import jayt.com.apnabegun.model.NewsItems;
 
 public class News extends Fragment {
 
-    ArrayList<NewsItems> dataList = new ArrayList<NewsItems>();;
+    ArrayList<NewsItems> dataList = new ArrayList<NewsItems>();
+    ArrayList<AdsList> mainAdsList = new ArrayList<AdsList>();
     ListView listNews;
+    ImageView mainAdImage;
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -44,14 +42,11 @@ public class News extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        LayoutInflater myinflater = getLayoutInflater();
         View rootView = inflater.inflate(R.layout.news, container, false);
 
-
-
         listNews = (ListView) rootView.findViewById(R.id.newsListView);
-//        ViewGroup myHeader = (ViewGroup)myinflater.inflate(R.layout.news, listNews, false);
-//        listNews.addHeaderView(myHeader, null, false);
+        mainAdImage = (ImageView) rootView.findViewById(R.id.ad_container);
+
         new DownloadNews().execute();
 
         return rootView;
@@ -69,15 +64,16 @@ public class News extends Fragment {
 
         }
         protected String doInBackground(String... args) {
-            String xml = "";
+            String news = "", mainad="";
 
             String urlParameters = "";
-            xml = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehi", urlParameters);
+            news = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehi", urlParameters);
+            mainad = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehiads", urlParameters);
 
-            if(xml.length()>10){ // Just checking if not empty
+            if(news.length()>10){ // Just checking if not empty
 
                 try {
-                    JSONObject jsonResponse = new JSONObject(xml);
+                    JSONObject jsonResponse = new JSONObject(news);
                     JSONArray jsonArray = jsonResponse.optJSONArray("newsitems");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -94,10 +90,31 @@ public class News extends Fragment {
                     e.printStackTrace();
                 }
             }else{
-                System.out.println("loading....");
+                Toast.makeText(getActivity(),"No news returned from server...",
+                        Toast.LENGTH_SHORT).show();
             }
 
-            return  xml;
+            if(mainad.length()>10){ // Just checking if not empty
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(mainad);
+                    JSONArray jsonArray = jsonResponse.optJSONArray("campaigns");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        AdsList adsitems = new AdsList();
+
+                        adsitems.setImageurl(jsonObject.getString("imageurl"));
+                        mainAdsList.add(i, adsitems);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                Toast.makeText(getActivity(),"Default Ad...",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            return news;
         }
 
         @Override
@@ -108,14 +125,27 @@ public class News extends Fragment {
             // updating UI from Background Thread
             getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    ImageView image = (ImageView) getActivity().findViewById(R.id.ad_container);
-                    image.setImageResource(R.drawable.lotushands);
+
+                    // Get the values from the adslist model
+                    final String image = mainAdsList.get(0).getImageurl();
+
+                    // If no url provided
+                    if(image.length() < 5)
+                    {
+                        mainAdImage.setVisibility(View.GONE);
+                        mainAdImage.setImageResource(R.drawable.lotushands);
+                    }else{
+                        Picasso.with(getActivity())
+                                .load(image)
+                                .into(mainAdImage);
+                    }
 
                     CustomAdapter adapter = new CustomAdapter(getActivity(), dataList);
                     listNews.setAdapter(adapter);
-
                 }
             });
+
+
         }
     }
 
