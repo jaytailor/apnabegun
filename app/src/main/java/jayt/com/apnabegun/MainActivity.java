@@ -9,10 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final ScrollView mScrollView = (ScrollView) findViewById(R.id.scrollView);
 
         // get screen size
         Display display = getWindowManager().getDefaultDisplay();
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Whatsapp share
         ImageButton whatsapp = (ImageButton) findViewById(R.id.shareImageButton);
+
 
         whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         //VIEWPAGER
         vp= (ViewPager) findViewById(R.id.viewpager_id);
         this.addPages();
-
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(vp);
