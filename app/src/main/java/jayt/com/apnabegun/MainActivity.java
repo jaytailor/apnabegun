@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
-                    String whatsAppMessage = "Download Begun news App from https://play.google.com/store/apps/details?id=com.jayt.fugga2d";
+                    String whatsAppMessage = "Download Begun news App from https://play.google.com/store/apps/details?id=jayt.com.apnabegun";
                     sendIntent.setType("text/plain");
                     sendIntent.putExtra(Intent.EXTRA_TEXT, whatsAppMessage);
 
