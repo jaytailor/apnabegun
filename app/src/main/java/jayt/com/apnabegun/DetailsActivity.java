@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +36,12 @@ public class DetailsActivity extends AppCompatActivity {
         ImageView image1 = (ImageView) findViewById(R.id.image);
         TextView writer1 = (TextView) findViewById(R.id.detailWriter);
         TextView publishedat1 = (TextView) findViewById(R.id.detailPublishedAt);
+
+        // Change the layout if ad (will write code later for ad). or stretch image if title, content and writer are emptys
+        if(writer.equals("") && title.equals("") && content.equals("") ){
+            image1.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            image1.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
 
         try{
             title1.setText(title);

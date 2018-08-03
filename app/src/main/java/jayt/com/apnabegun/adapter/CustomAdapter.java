@@ -65,11 +65,28 @@ public class CustomAdapter extends BaseAdapter {
         ImageView newsImg = (ImageView) convertView.findViewById(R.id.newsImage);
 
         // Get the values from the newitems model
-        final String title = newsItems.get(position).getTitle();
+        final String isbreaking = newsItems.get(position).getIs_breaking();
+
+        final String title;
+        if(isbreaking == "true"){
+            title = "ब्रेकिंग न्यूज़: " + newsItems.get(position).getTitle();;
+        }else{
+            title = newsItems.get(position).getTitle();;
+        }
+
         final String cont = newsItems.get(position).getContent();
         final String wrtr = newsItems.get(position).getWriter();
         final String image = newsItems.get(position).getImage();
         final String publishedat = newsItems.get(position).getPublished_at();
+
+        // Change the layout if ad (will write code later for ad). or stretch image if title, content and writer are empty
+        if(wrtr.equals("") && cont.equals("") ){
+            newsImg.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            newsImg.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        }else{
+            newsImg.getLayoutParams().height = (int) c.getResources().getDimension(R.dimen.imageview_height);
+            newsImg.getLayoutParams().width = (int) c.getResources().getDimension(R.dimen.imageview_width);
+        }
 
         newsTitle.setText(title);
         content.setText(cont);

@@ -5,25 +5,27 @@ public class AdsList {
     String id;
     String imageurl;
     String expired;
-    String startdate;
-    String enddate;
-    String impressionlimit;
-    String impressionfreq;
+    String start_date;
+    String end_date;
+    String impression_limit;
+    String impression_freq;
     String priority;
+    String current_impression_count;
 
     public AdsList() {
     }
 
-    public AdsList(String id, String imageurl, String expired, String startdate, String enddate,
-                   String impressionlimit, String impressionfreq, String priority) {
+    public AdsList(String id, String imageurl, String expired, String start_date, String end_date,
+                   String impression_limit, String impression_freq, String priority, String current_impression_count) {
         this.id = id;
         this.imageurl = imageurl;
         this.expired = expired;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.impressionlimit = impressionlimit;
-        this.impressionfreq = impressionfreq;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.impression_limit = impression_limit;
+        this.impression_freq = impression_freq;
         this.priority = priority;
+        this.current_impression_count = current_impression_count;
     }
 
     public String getId() {
@@ -50,43 +52,4 @@ public class AdsList {
         this.expired = expired;
     }
 
-    public String getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
-    }
-
-    public String getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
-    }
-
-    public String getImpressionlimit() {
-        return impressionlimit;
-    }
-
-    public void setImpressionlimit(String impressionlimit) {
-        this.impressionlimit = impressionlimit;
-    }
-
-    public String getImpressionfreq() {
-        return impressionfreq;
-    }
-
-    public void setImpressionfreq(String impressionfreq) {
-        this.impressionfreq = impressionfreq;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
 }

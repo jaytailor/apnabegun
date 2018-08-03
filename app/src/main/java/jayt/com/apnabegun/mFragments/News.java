@@ -67,67 +67,75 @@ public class News extends Fragment {
             String news = "", mainad="";
 
             String urlParameters = "";
-            news = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehi", urlParameters);
-            mainad = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehiads", urlParameters);
 
-            if(news.length()>10){ // Just checking if not empty
+            try{
+                news = Function.excuteGet("http://ec2-52-52-28-14.us-west-1.compute.amazonaws.com:8080/getallnews?list=20", urlParameters);
+                mainad = Function.excuteGet("http://ec2-52-52-28-14.us-west-1.compute.amazonaws.com:8080/getallads", urlParameters);
 
-                try {
-                    JSONObject jsonResponse = new JSONObject(news);
-                    JSONArray jsonArray = jsonResponse.optJSONArray("newsitems");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        NewsItems newsitems = new NewsItems();
-
-                        newsitems.setTitle(jsonObject.getString("title"));
-                        newsitems.setContent(jsonObject.getString("content"));
-                        newsitems.setWriter(jsonObject.getString("writer"));
-                        newsitems.setImage(jsonObject.getString("image"));
-                        newsitems.setPublished_at(jsonObject.getString("published_at"));
-                        dataList.add(i, newsitems);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(news == null){
+                    Toast.makeText(getActivity(),"No news returned from server...",
+                            Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                Toast.makeText(getActivity(),"No news returned from server...",
-                        Toast.LENGTH_SHORT).show();
-            }
 
-            if(mainad.length()>10){ // Just checking if not empty
+                if(news != null && news.length()>10){ // Just checking if not empty
 
-                try {
-                    JSONObject jsonResponse = new JSONObject(mainad);
-                    JSONArray jsonArray = jsonResponse.optJSONArray("campaigns");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        AdsList adsitems = new AdsList();
+                    try {
+                        dataList.clear();
+                        JSONObject jsonResponse = new JSONObject(news);
+                        JSONArray jsonArray = jsonResponse.optJSONArray("newsitems");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            NewsItems newsitems = new NewsItems();
 
-                        adsitems.setImageurl(jsonObject.getString("imageurl"));
-                        mainAdsList.add(i, adsitems);
+                            newsitems.setTitle(jsonObject.getString("title"));
+                            newsitems.setContent(jsonObject.getString("content"));
+                            newsitems.setWriter(jsonObject.getString("writer"));
+                            newsitems.setImage(jsonObject.getString("image"));
+                            newsitems.setPublished_at(jsonObject.getString("published_at"));
+                            newsitems.setIs_breaking(jsonObject.getString("is_breaking"));
+                            dataList.add(i, newsitems);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }else{
-                Toast.makeText(getActivity(),"Default Ad...",
-                        Toast.LENGTH_SHORT).show();
-            }
 
+                if(mainad.length()>10){ // Just checking if not empty
+
+                    try {
+                        JSONObject jsonResponse = new JSONObject(mainad);
+                        JSONArray jsonArray = jsonResponse.optJSONArray("campaigns");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            AdsList adsitems = new AdsList();
+
+                            adsitems.setImageurl(jsonObject.getString("imageurl"));
+                            mainAdsList.add(i, adsitems);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }catch (RuntimeException e){
+                e.printStackTrace();
+            }finally {
+                // dismiss the dialog after getting all products
+                pDialog.dismiss();
+            }
             return news;
         }
 
         @Override
         protected void onPostExecute(String xml) {
-            // dismiss the dialog after getting all products
-            pDialog.dismiss();
 
             // updating UI from Background Thread
             getActivity().runOnUiThread(new Runnable() {
                 public void run() {
 
                     // Get the values from the adslist model
-                    final String image = mainAdsList.get(0).getImageurl();
+                    //final String image = mainAdsList.get(0).getImageurl();
+                    final String image = "https://imgur.com/paXUGf4.png";
 
                     // If no url provided
                     if(image.length() < 5)
@@ -136,7 +144,7 @@ public class News extends Fragment {
                         mainAdImage.setImageResource(R.drawable.lotushands);
                     }else{
                         Picasso.with(getActivity())
-                                .load(image)
+                                .load(image).fit().centerInside()
                                 .into(mainAdImage);
                     }
 
@@ -144,8 +152,6 @@ public class News extends Fragment {
                     listNews.setAdapter(adapter);
                 }
             });
-
-
         }
     }
 

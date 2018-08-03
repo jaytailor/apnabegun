@@ -70,7 +70,7 @@ public class AdsAdapter extends BaseAdapter {
 
         final ImageView adsImg = (ImageView) convertView.findViewById(R.id.adsImage);
 
-        // Create a pop up of image if clicked 
+        // Create a pop up of image if clicked
         final ImagePopup imagePopup = new ImagePopup(c);
         imagePopup.setBackgroundColor(Color.DKGRAY);
         imagePopup.setFullScreen(true);

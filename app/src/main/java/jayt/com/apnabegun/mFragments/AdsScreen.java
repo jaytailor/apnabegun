@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,32 +57,40 @@ public class AdsScreen extends Fragment {
 
         }
         protected String doInBackground(String... args) {
-            String xml = "";
+            String ads = "";
 
             String urlParameters = "";
-            xml = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehiads", urlParameters);
+            try{
+                ads = Function.excuteGet("http://ec2-52-52-28-14.us-west-1.compute.amazonaws.com:8080/getallads", urlParameters);
+                //ads = Function.excuteGet("http://34.233.126.33:5000/getresponse/aisehiads", urlParameters);
 
-            if(xml.length()>10){ // Just checking if not empty
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(xml);
-                    JSONArray jsonArray = jsonResponse.optJSONArray("campaigns");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        AdsList adsitems = new AdsList();
-
-                        adsitems.setImageurl(jsonObject.getString("imageurl"));
-
-                        dataList.add(i, adsitems);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(ads == null){
+                    Toast.makeText(getActivity(),"No Ads returned from server...Try after sometime...",
+                            Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                System.out.println("loading....");
+
+                if(ads.length()>10){ // Just checking if not empty
+
+                    try {
+                        JSONObject jsonResponse = new JSONObject(ads);
+                        JSONArray jsonArray = jsonResponse.optJSONArray("campaigns");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            AdsList adsitems = new AdsList();
+
+                            adsitems.setImageurl(jsonObject.getString("imageurl"));
+
+                            dataList.add(i, adsitems);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }catch (RuntimeException e){
+                e.printStackTrace();
             }
 
-            return  xml;
+            return ads;
         }
 
         @Override
