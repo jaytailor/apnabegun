@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new Editorial(), "संपादकीय");
 //        pagerAdapter.addFragment(new BuySell(), "ख़रीदे बेचे");
 //        pagerAdapter.addFragment(new AdsScreen(), "राशिफ़ल");
-        
+
         //SET ADAPTER TO VP
         vp.setAdapter(pagerAdapter);
     }
