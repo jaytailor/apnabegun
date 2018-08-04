@@ -8,6 +8,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +20,9 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 
+import java.util.Vector;
+
+import jayt.com.apnabegun.adapter.VideoAdapter;
 import jayt.com.apnabegun.adapter.ViewPagerAdapter;
 import jayt.com.apnabegun.common.Function;
 import jayt.com.apnabegun.mFragments.AdsScreen;
@@ -25,6 +30,7 @@ import jayt.com.apnabegun.mFragments.BuySell;
 import jayt.com.apnabegun.mFragments.Editorial;
 import jayt.com.apnabegun.mFragments.News;
 import jayt.com.apnabegun.mFragments.Videos;
+import jayt.com.apnabegun.model.YoutubeVideo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,11 +93,11 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter pagerAdapter=new ViewPagerAdapter(this.getSupportFragmentManager());
         pagerAdapter.addFragment(new News(), "समाचार");
         pagerAdapter.addFragment(new AdsScreen(), "विज्ञापन");
+        pagerAdapter.addFragment(new Videos(), "वीडियो");
         pagerAdapter.addFragment(new Editorial(), "संपादकीय");
 //        pagerAdapter.addFragment(new BuySell(), "ख़रीदे बेचे");
 //        pagerAdapter.addFragment(new AdsScreen(), "राशिफ़ल");
-//        pagerAdapter.addFragment(new Videos(), "वीडियो");
-
+        
         //SET ADAPTER TO VP
         vp.setAdapter(pagerAdapter);
     }
