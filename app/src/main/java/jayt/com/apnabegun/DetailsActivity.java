@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,14 +34,16 @@ public class DetailsActivity extends AppCompatActivity {
 
         TextView title1 = (TextView) findViewById(R.id.title);
         TextView content1 = (TextView) findViewById(R.id.content);
+        content1.setMovementMethod(new ScrollingMovementMethod());
+
         ImageView image1 = (ImageView) findViewById(R.id.image);
         TextView writer1 = (TextView) findViewById(R.id.detailWriter);
         TextView publishedat1 = (TextView) findViewById(R.id.detailPublishedAt);
 
         // Change the layout if ad (will write code later for ad). or stretch image if title, content and writer are emptys
         if(writer.equals("") && title.equals("") && content.equals("") ){
-            image1.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-            image1.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+            image1.getLayoutParams().height = (int) getResources().getDimension(R.dimen.detailimage_height);
+            image1.getLayoutParams().width = (int) getResources().getDimension(R.dimen.detailimage_width);
         }
 
         try{
