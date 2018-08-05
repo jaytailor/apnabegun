@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.mFragments;
+package jayt.com.begundarshan.mFragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 import java.util.Vector;
 
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.adapter.VideoAdapter;
-import jayt.com.apnabegun.model.YoutubeVideo;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.adapter.VideoAdapter;
+import jayt.com.begundarshan.model.YoutubeVideo;
 
 public class Videos extends Fragment{
     View view;
@@ -39,6 +39,7 @@ public class Videos extends Fragment{
 
         // Load video List but clear from earlier call
         youtubeVideos.clear();
+        
         youtubeVideos.add(new YoutubeVideo("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/xplGGQq9zwE\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"));
 
         VideoAdapter videoAdapter = new VideoAdapter(getActivity(), youtubeVideos);

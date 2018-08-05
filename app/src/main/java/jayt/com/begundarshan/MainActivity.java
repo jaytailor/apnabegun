@@ -1,4 +1,4 @@
-package jayt.com.apnabegun;
+package jayt.com.begundarshan;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -22,15 +22,15 @@ import android.widget.Toast;
 
 import java.util.Vector;
 
-import jayt.com.apnabegun.adapter.VideoAdapter;
-import jayt.com.apnabegun.adapter.ViewPagerAdapter;
-import jayt.com.apnabegun.common.Function;
-import jayt.com.apnabegun.mFragments.AdsScreen;
-import jayt.com.apnabegun.mFragments.BuySell;
-import jayt.com.apnabegun.mFragments.Editorial;
-import jayt.com.apnabegun.mFragments.News;
-import jayt.com.apnabegun.mFragments.Videos;
-import jayt.com.apnabegun.model.YoutubeVideo;
+import jayt.com.begundarshan.adapter.VideoAdapter;
+import jayt.com.begundarshan.adapter.ViewPagerAdapter;
+import jayt.com.begundarshan.common.Function;
+import jayt.com.begundarshan.mFragments.AdsScreen;
+import jayt.com.begundarshan.mFragments.BuySell;
+import jayt.com.begundarshan.mFragments.Editorial;
+import jayt.com.begundarshan.mFragments.News;
+import jayt.com.begundarshan.mFragments.Videos;
+import jayt.com.begundarshan.model.YoutubeVideo;
 
 public class MainActivity extends AppCompatActivity {
 

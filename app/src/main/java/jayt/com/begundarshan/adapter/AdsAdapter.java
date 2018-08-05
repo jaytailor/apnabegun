@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.adapter;
+package jayt.com.begundarshan.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -25,10 +25,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import jayt.com.apnabegun.DetailsActivity;
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.model.AdsList;
-import jayt.com.apnabegun.model.NewsItems;
+import jayt.com.begundarshan.DetailsActivity;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.model.AdsList;
+import jayt.com.begundarshan.model.NewsItems;
 
 public class AdsAdapter extends BaseAdapter {
 

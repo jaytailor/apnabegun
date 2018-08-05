@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.mFragments;
+package jayt.com.begundarshan.mFragments;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -17,10 +17,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.adapter.AdsAdapter;
-import jayt.com.apnabegun.common.Function;
-import jayt.com.apnabegun.model.AdsList;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.adapter.AdsAdapter;
+import jayt.com.begundarshan.common.Function;
+import jayt.com.begundarshan.model.AdsList;
 
 public class AdsScreen extends Fragment {
     View view;

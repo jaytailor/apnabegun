@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.common;
+package jayt.com.begundarshan.common;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import jayt.com.apnabegun.MainActivity;
+import jayt.com.begundarshan.MainActivity;
 
 public class Function {
 

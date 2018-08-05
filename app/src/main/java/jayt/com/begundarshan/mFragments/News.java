@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.mFragments;
+package jayt.com.begundarshan.mFragments;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -20,11 +20,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.adapter.CustomAdapter;
-import jayt.com.apnabegun.common.Function;
-import jayt.com.apnabegun.model.AdsList;
-import jayt.com.apnabegun.model.NewsItems;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.adapter.CustomAdapter;
+import jayt.com.begundarshan.common.Function;
+import jayt.com.begundarshan.model.AdsList;
+import jayt.com.begundarshan.model.NewsItems;
 
 public class News extends Fragment {
 
@@ -45,7 +45,7 @@ public class News extends Fragment {
         View rootView = inflater.inflate(R.layout.news, container, false);
 
         listNews = (ListView) rootView.findViewById(R.id.newsListView);
-        mainAdImage = (ImageView) rootView.findViewById(R.id.ad_container);
+        //mainAdImage = (ImageView) rootView.findViewById(R.id.ad_container);
 
         new DownloadNews().execute();
 
@@ -135,18 +135,18 @@ public class News extends Fragment {
 
                     // Get the values from the adslist model
                     //final String image = mainAdsList.get(0).getImageurl();
-                    final String image = "https://imgur.com/paXUGf4.png";
-
-                    // If no url provided
-                    if(image.length() < 5)
-                    {
-                        mainAdImage.setVisibility(View.GONE);
-                        mainAdImage.setImageResource(R.drawable.lotushands);
-                    }else{
-                        Picasso.with(getActivity())
-                                .load(image).fit().centerInside()
-                                .into(mainAdImage);
-                    }
+//                    final String image = "https://imgur.com/paXUGf4.png";
+//
+//                    // If no url provided
+//                    if(image.length() < 5)
+//                    {
+//                        mainAdImage.setVisibility(View.GONE);
+//                        mainAdImage.setImageResource(R.drawable.lotushands);
+//                    }else{
+//                        Picasso.with(getActivity())
+//                                .load(image).fit().centerInside()
+//                                .into(mainAdImage);
+//                    }
 
                     CustomAdapter adapter = new CustomAdapter(getActivity(), dataList);
                     listNews.setAdapter(adapter);

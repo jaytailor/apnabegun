@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.adapter;
+package jayt.com.begundarshan.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,8 @@ import android.webkit.WebView;
 
 import java.util.List;
 
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.model.YoutubeVideo;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.model.YoutubeVideo;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder>{
 

@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.model;
+package jayt.com.begundarshan.model;
 
 public class NewsItems {
 

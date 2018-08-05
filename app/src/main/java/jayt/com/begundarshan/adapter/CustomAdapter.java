@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.adapter;
+package jayt.com.begundarshan.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import jayt.com.apnabegun.DetailsActivity;
-import jayt.com.apnabegun.MainActivity;
-import jayt.com.apnabegun.R;
-import jayt.com.apnabegun.model.NewsItems;
+import jayt.com.begundarshan.DetailsActivity;
+import jayt.com.begundarshan.MainActivity;
+import jayt.com.begundarshan.R;
+import jayt.com.begundarshan.model.NewsItems;
 
 public class CustomAdapter extends BaseAdapter {
 
@@ -90,7 +90,7 @@ public class CustomAdapter extends BaseAdapter {
 
         newsTitle.setText(title);
         content.setText(cont);
-        published_at.setText(wrtr);
+        published_at.setText(publishedat);
 
         if(image.length() < 5)
         {

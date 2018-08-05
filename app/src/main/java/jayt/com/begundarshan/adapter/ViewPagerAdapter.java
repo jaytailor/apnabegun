@@ -1,4 +1,4 @@
-package jayt.com.apnabegun.adapter;
+package jayt.com.begundarshan.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
